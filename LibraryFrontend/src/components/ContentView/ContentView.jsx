@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import Dashboard from "./Dashboard/Dashboard";
+import BookList from "./BookList/BookList";
 
 const API_URL = "http://localhost:5114/library/books";
 
@@ -18,7 +18,7 @@ function ContentView() {
       .catch((error) => setError(error));
   };
 
-  return <div>{data && <Dashboard data={data} error={error} />}</div>;
+  return <div>{data && <BookList data={data} error={error} />}</div>;
 }
 
 export default ContentView;

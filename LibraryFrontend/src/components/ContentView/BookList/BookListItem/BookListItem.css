@@ -1,0 +1,8 @@
+.book-list-item {
+  display: flex;
+  column-gap: 7px;
+}
+
+.book-title {
+  font-weight: bold;
+}
