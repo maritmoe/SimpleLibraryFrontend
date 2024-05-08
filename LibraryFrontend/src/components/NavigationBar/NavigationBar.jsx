@@ -71,8 +71,9 @@ function NavigationBar() {
               variant="contained"
               color="secondary"
               startIcon={<AdminPanelSettings />}
+              onClick={() => navigate("/admin")}
             >
-              Admin link to come
+              Admin Site
             </Button>
           </Tooltip>
         </Box>
