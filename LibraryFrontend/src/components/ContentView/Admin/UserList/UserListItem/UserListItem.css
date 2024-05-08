@@ -1,6 +1,7 @@
 .user-list-item {
-  display: flex;
-  column-gap: 30px;
+  display: grid;
+  grid-template-columns: 20% 60%;
+  margin-left: 250px;
 }
 
 .user-name {
