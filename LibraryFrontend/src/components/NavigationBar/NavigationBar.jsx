@@ -26,11 +26,12 @@ import {
   MenuBook,
   AdminPanelSettings,
 } from "@mui/icons-material";
+import { useNavigate } from "react-router-dom";
 
 function NavigationBar() {
   const theme = useTheme();
   const colorMode = useContext(ColorModeContext);
-  const settings = ["Profile", "My Borrowings", "Logout"];
+  const navigate = useNavigate();
 
   const [anchorElUser, setAnchorElUser] = useState(null);
 
@@ -40,6 +41,11 @@ function NavigationBar() {
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
+  };
+
+  const handleProfileClick = () => {
+    handleCloseUserMenu();
+    navigate("/profile");
   };
 
   return (
@@ -53,8 +59,9 @@ function NavigationBar() {
                 variant="contained"
                 color="secondary"
                 startIcon={<MenuBook />}
+                onClick={() => navigate("/")}
               >
-                BookList link to come
+                Books
               </Button>
             </Tooltip>
           </Box>
@@ -114,11 +121,15 @@ function NavigationBar() {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
+              <MenuItem onClick={handleProfileClick}>
+                <Typography textAlign="center">Profile</Typography>
+              </MenuItem>
+              <MenuItem onClick={handleCloseUserMenu}>
+                <Typography textAlign="center">My Borrowings</Typography>
+              </MenuItem>
+              <MenuItem onClick={handleCloseUserMenu}>
+                <Typography textAlign="center">Logout</Typography>
+              </MenuItem>
             </Menu>
           </Box>
         </Toolbar>
