@@ -1,0 +1,8 @@
+.user-list-item {
+  display: flex;
+  column-gap: 30px;
+}
+
+.user-name {
+  font-weight: bold;
+}

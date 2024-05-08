@@ -29,7 +29,6 @@ function Admin() {
         <Button
           variant="contained"
           color="secondary"
-          disabled
           onClick={() => navigate("/admin/users")}
         >
           Get All Users

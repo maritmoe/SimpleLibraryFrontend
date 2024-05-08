@@ -10,6 +10,7 @@ import ContentView from "./components/ContentView/ContentView";
 import ProfileView from "./components/ContentView/Profile/ProfileView";
 import CreateBook from "./components/ContentView/Admin/CreateBook/CreateBook";
 import Admin from "./components/ContentView/Admin/Admin";
+import UserList from "./components/ContentView/Admin/UserList/UserList";
 
 const ColorModeContext = createContext({ toggleColorMode: () => {} });
 
@@ -46,6 +47,7 @@ function App() {
             <Route path="/profile" element={<ProfileView />} />
             <Route path="/admin" element={<Admin />} />
             <Route path="/admin/add" element={<CreateBook />} />
+            <Route path="/admin/users" element={<UserList />} />
           </Routes>
         </div>
       </ThemeProvider>
