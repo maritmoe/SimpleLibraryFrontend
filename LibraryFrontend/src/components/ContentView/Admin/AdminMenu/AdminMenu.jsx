@@ -34,6 +34,16 @@ function AdminMenu() {
           Get All Users
         </Button>
       </Tooltip>
+      <Tooltip title="Get All Borrowings">
+        <Button
+          variant="contained"
+          color="secondary"
+          disabled
+          onClick={() => navigate("/admin/borrowings")}
+        >
+          Borrowings
+        </Button>
+      </Tooltip>
     </Stack>
   );
 }
