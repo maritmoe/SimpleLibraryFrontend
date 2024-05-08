@@ -20,7 +20,12 @@ import {
   Tooltip,
   Typography,
 } from "@mui/material";
-import { LightMode, DarkMode } from "@mui/icons-material";
+import {
+  LightMode,
+  DarkMode,
+  MenuBook,
+  AdminPanelSettings,
+} from "@mui/icons-material";
 
 function NavigationBar() {
   const theme = useTheme();
@@ -44,8 +49,23 @@ function NavigationBar() {
           <img style={{ height: "100px" }} alt="Logo" src={logo} />
           <Box>
             <Tooltip title="Navigate to books">
-              <Button variant="contained" color="secondary">
+              <Button
+                variant="contained"
+                color="secondary"
+                startIcon={<MenuBook />}
+              >
                 BookList link to come
+              </Button>
+            </Tooltip>
+          </Box>
+          <Box>
+            <Tooltip title="Navigate to admin if authorized">
+              <Button
+                variant="contained"
+                color="secondary"
+                startIcon={<AdminPanelSettings />}
+              >
+                Admin link to come
               </Button>
             </Tooltip>
           </Box>
