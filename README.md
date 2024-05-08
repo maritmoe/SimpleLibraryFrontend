@@ -11,3 +11,4 @@ Frontend for SimpleLibrary.
 ## Dependencies
 
 - Material UI `npm install @mui/material @emotion/react @emotion/styled @mui/icons-material`.
+- React Router dom `npm install react-router-dom`.
