@@ -1,3 +1,4 @@
+import { Box, Button, TextField, Tooltip } from "@mui/material";
 import { useEffect, useState } from "react";
 
 function ProfileView() {
@@ -29,16 +30,57 @@ function ProfileView() {
       .catch((error) => setError(error));
   };
 
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setUser({ ...user, [name]: value });
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if (user.name && user.id) {
+      fetch(`http://localhost:5114/library/users/${currentUser}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(user),
+      })
+        .then((response) => response.json())
+        .then((data) => console.log(data));
+    }
+  };
+
   return (
     <div>
       {error && <p>Error: {error.message}</p>}
       {errorMessage && <p>Error: {errorMessage}</p>}
+      <h2>Profile</h2>
       {user && (
-        <div>
-          <h2>Profile</h2>
-          <p>Users ID: {user.id}</p>
-          <p>Users Name: {user.name}</p>
-        </div>
+        <Box
+          component="form"
+          sx={{
+            "& .MuiTextField-root": { mb: 1 },
+          }}
+          autoComplete="off"
+          onSubmit={handleSubmit}
+        >
+          <p>ID: {user.id}</p>
+          <TextField
+            label="Name"
+            name="name"
+            InputLabelProps={{
+              shrink: true,
+            }}
+            required
+            onChange={handleChange}
+            value={user.name}
+          />
+          <Box>
+            <Tooltip title="Update profile of user">
+              <Button variant="outlined" color="secondary" type="submit">
+                Update User
+              </Button>
+            </Tooltip>
+          </Box>
+        </Box>
       )}
     </div>
   );
