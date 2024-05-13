@@ -21,12 +21,7 @@ import {
   Tooltip,
   Typography,
 } from "@mui/material";
-import {
-  LightMode,
-  DarkMode,
-  MenuBook,
-  AdminPanelSettings,
-} from "@mui/icons-material";
+import { LightMode, DarkMode } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 
 function NavigationBar() {
@@ -58,30 +53,6 @@ function NavigationBar() {
     <AppBar position="static" className="header">
       <Toolbar disableGutters sx={{ gap: 2 }}>
         <img style={{ height: "70px" }} alt="Logo" src={logo} />
-        <Box>
-          <Tooltip title="Navigate to books">
-            <Button
-              variant="contained"
-              color="secondary"
-              startIcon={<MenuBook />}
-              onClick={() => navigate("/")}
-            >
-              Books
-            </Button>
-          </Tooltip>
-        </Box>
-        <Box>
-          <Tooltip title="Navigate to admin if authorized">
-            <Button
-              variant="contained"
-              color="secondary"
-              startIcon={<AdminPanelSettings />}
-              onClick={() => navigate("/admin")}
-            >
-              Admin Site
-            </Button>
-          </Tooltip>
-        </Box>
         <Box>
           <Tooltip
             title={

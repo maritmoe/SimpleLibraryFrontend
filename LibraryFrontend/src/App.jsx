@@ -11,6 +11,7 @@ import ProfileView from "./components/ContentView/Profile/ProfileView";
 import Admin from "./components/ContentView/Admin/Admin";
 import BorrowingHistory from "./components/ContentView/BorrowingHistory/BorrowingHistory";
 import BookView from "./components/ContentView/BookView/BookView";
+import BottomNavigationBar from "./components/BottomNavigationBar/BottomNavigationBar";
 
 const ColorModeContext = createContext({ toggleColorMode: () => {} });
 
@@ -50,6 +51,7 @@ function App() {
             <Route path="/admin/*" element={<Admin />} />
           </Routes>
         </div>
+        <BottomNavigationBar />
       </ThemeProvider>
     </ColorModeContext.Provider>
   );
