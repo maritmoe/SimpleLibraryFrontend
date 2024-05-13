@@ -10,6 +10,7 @@ import ContentView from "./components/ContentView/ContentView";
 import ProfileView from "./components/ContentView/Profile/ProfileView";
 import Admin from "./components/ContentView/Admin/Admin";
 import BorrowingHistory from "./components/ContentView/BorrowingHistory/BorrowingHistory";
+import BookView from "./components/ContentView/BookView/BookView";
 
 const ColorModeContext = createContext({ toggleColorMode: () => {} });
 
@@ -43,6 +44,7 @@ function App() {
         <div className="main-container">
           <Routes>
             <Route path="/" element={<ContentView />} />
+            <Route path="/book/:bookId" element={<BookView />} />
             <Route path="/profile" element={<ProfileView />} />
             <Route path="/borrowings" element={<BorrowingHistory />} />
             <Route path="/admin/*" element={<Admin />} />
