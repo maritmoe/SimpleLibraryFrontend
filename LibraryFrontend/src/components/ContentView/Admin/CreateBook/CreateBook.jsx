@@ -91,7 +91,7 @@ function CreateBook() {
         </Container>
         <Container sx={{ m: 1 }}>
           <Tooltip title="Create and Add New Book to Library">
-            <Button variant="contained" color="secondary" type="submit">
+            <Button variant="outlined" color="secondary" type="submit">
               Add Book
             </Button>
           </Tooltip>
