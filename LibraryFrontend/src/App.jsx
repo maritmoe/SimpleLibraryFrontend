@@ -9,6 +9,7 @@ import NavigationBar from "./components/NavigationBar/NavigationBar";
 import ContentView from "./components/ContentView/ContentView";
 import ProfileView from "./components/ContentView/Profile/ProfileView";
 import Admin from "./components/ContentView/Admin/Admin";
+import BorrowingHistory from "./components/ContentView/BorrowingHistory/BorrowingHistory";
 
 const ColorModeContext = createContext({ toggleColorMode: () => {} });
 
@@ -43,6 +44,7 @@ function App() {
           <Routes>
             <Route path="/" element={<ContentView />} />
             <Route path="/profile" element={<ProfileView />} />
+            <Route path="/borrowings" element={<BorrowingHistory />} />
             <Route path="/admin/*" element={<Admin />} />
           </Routes>
         </div>

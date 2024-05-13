@@ -1,0 +1,25 @@
+.borrowing-history {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+
+  height: 100%;
+  width: 100%;
+}
+
+.borrowing-history table {
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.borrowing-history table,
+th,
+td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+.borrowing-history tbody tr:nth-child(odd) {
+  background-color: #ce93d8;
+}

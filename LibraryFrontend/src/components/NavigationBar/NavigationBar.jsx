@@ -49,6 +49,11 @@ function NavigationBar() {
     navigate("/profile");
   };
 
+  const handleMyBorrowingsClick = () => {
+    handleCloseUserMenu();
+    navigate("/borrowings");
+  };
+
   return (
     <AppBar position="static" className="header">
       <Toolbar disableGutters sx={{ gap: 2 }}>
@@ -125,7 +130,7 @@ function NavigationBar() {
             <MenuItem onClick={handleProfileClick}>
               <Typography textAlign="center">Profile</Typography>
             </MenuItem>
-            <MenuItem onClick={handleCloseUserMenu}>
+            <MenuItem onClick={handleMyBorrowingsClick}>
               <Typography textAlign="center">My Borrowings</Typography>
             </MenuItem>
             <MenuItem onClick={handleCloseUserMenu}>
