@@ -2,3 +2,9 @@ ul {
   list-style: none;
   padding: 0%;
 }
+
+.admin-user-list {
+  width: 100%;
+  display: grid;
+  place-content: center;
+}

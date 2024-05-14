@@ -5,7 +5,7 @@ import AdminMenu from "./AdminMenu/AdminMenu";
 
 function Admin() {
   return (
-    <div className="admin-div">
+    <div>
       <AdminMenu />
       <Routes>
         <Route path="/add" element={<CreateBook />} />

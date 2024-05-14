@@ -21,7 +21,7 @@ function UserList() {
       {error && <p>{error.message}</p>}
       {users && <h2>Users</h2>}
       {users && (
-        <ul>
+        <ul className="admin-user-list">
           {users.map((user) => (
             <UserListItem key={user.id} user={user} />
           ))}

@@ -1,7 +1,7 @@
 .user-list-item {
   display: grid;
-  grid-template-columns: 20% 60%;
-  margin-left: 250px;
+  width: 350px;
+  grid-template-columns: 40% 60%;
 }
 
 .user-name {
