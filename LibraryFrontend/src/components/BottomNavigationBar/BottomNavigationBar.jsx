@@ -20,7 +20,6 @@ function BottomNavigationBar() {
       >
         <BottomNavigation
           showLabels
-          colors={"secondary"}
           value={value}
           onChange={(event, newValue) => {
             setValue(newValue);
