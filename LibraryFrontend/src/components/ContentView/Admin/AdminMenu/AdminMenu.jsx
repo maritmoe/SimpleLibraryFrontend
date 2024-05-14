@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 function AdminMenu() {
   const navigate = useNavigate();
-  const [tabValue, setTabValue] = useState(null);
+  const [tabValue, setTabValue] = useState(0);
 
   const handleChange = (event, newValue) => {
     setTabValue(newValue);

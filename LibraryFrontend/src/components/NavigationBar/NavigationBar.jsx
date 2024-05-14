@@ -11,6 +11,7 @@ import {
   AppBar,
   Avatar,
   Box,
+  Button,
   IconButton,
   Menu,
   MenuItem,
@@ -18,7 +19,7 @@ import {
   Tooltip,
   Typography,
 } from "@mui/material";
-import { LightMode, DarkMode } from "@mui/icons-material";
+import { LightMode, DarkMode, AdminPanelSettings } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 
 function NavigationBar() {
@@ -49,8 +50,22 @@ function NavigationBar() {
   return (
     <AppBar position="static" className="header">
       <Toolbar disableGutters sx={{ alignSelf: "center", gap: 2 }}>
-        <img style={{ height: "70px" }} alt="Logo" src={logo} />
+        <Tooltip title="Navigate to books">
+          <Button aria-label="Books" onClick={() => navigate("/")}>
+            <img style={{ height: "70px" }} alt="Logo" src={logo} />
+          </Button>
+        </Tooltip>
         <Box>
+          <Tooltip title="Navigate to admin menu">
+            <IconButton
+              sx={{ width: "50px", height: "50px" }}
+              onClick={() => navigate("/admin/add")}
+              aria-label="Admin"
+              label="Admin"
+            >
+              <AdminPanelSettings />
+            </IconButton>
+          </Tooltip>
           <Tooltip
             title={
               theme.palette.mode === "dark"
@@ -64,7 +79,6 @@ function NavigationBar() {
               aria-label={
                 theme.palette.mode === "dark" ? "light-mode" : "dark-mode"
               }
-              label="Mode"
             >
               {theme.palette.mode === "dark" ? <LightMode /> : <DarkMode />}
             </IconButton>
