@@ -1,0 +1,26 @@
+.edit-book-box {
+  display: grid;
+  place-content: center;
+}
+
+.fetch-book-form {
+  display: grid;
+  gap: 10px;
+}
+
+.fetch-book-form-big {
+  display: grid;
+  grid-template-columns: 200px 200px;
+  gap: 10px;
+}
+
+.edit-book-form {
+  display: grid;
+  gap: 10px;
+}
+
+.edit-book-form-big {
+  display: grid;
+  grid-template-columns: 200px 200px 200px;
+  gap: 10px;
+}

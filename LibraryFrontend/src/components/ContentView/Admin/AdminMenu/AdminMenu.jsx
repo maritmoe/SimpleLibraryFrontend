@@ -30,8 +30,7 @@ function AdminMenu() {
         <Tab
           icon={<EditNote />}
           label="Edit book"
-          disabled
-          onClick={() => navigate("/admin/books/:bookId")}
+          onClick={() => navigate("/admin/books/edit")}
         />
         <Tab
           icon={<Group />}
