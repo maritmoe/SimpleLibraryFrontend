@@ -1,5 +1,3 @@
-// Things to include: Logo, link to BookList, darkmode icon, ProfilePicture (Profile, MyBorrowings, LogOut)
-// Look at this: https://mui.com/material-ui/react-app-bar/#app-bar-with-responsive-menu
 import { useContext, useState } from "react";
 
 import { ColorModeContext } from "../../App";
@@ -13,7 +11,6 @@ import {
   AppBar,
   Avatar,
   Box,
-  Button,
   IconButton,
   Menu,
   MenuItem,
@@ -51,7 +48,7 @@ function NavigationBar() {
 
   return (
     <AppBar position="static" className="header">
-      <Toolbar disableGutters sx={{ gap: 2 }}>
+      <Toolbar disableGutters sx={{ alignSelf: "center", gap: 2 }}>
         <img style={{ height: "70px" }} alt="Logo" src={logo} />
         <Box>
           <Tooltip
@@ -61,19 +58,16 @@ function NavigationBar() {
                 : "Click for Dark mode"
             }
           >
-            <Button
-              variant="contained"
-              color="secondary"
-              startIcon={
-                theme.palette.mode === "dark" ? <LightMode /> : <DarkMode />
-              }
+            <IconButton
+              sx={{ width: "50px", height: "50px" }}
               onClick={colorMode.toggleColorMode}
               aria-label={
-                theme.palette.mode === "dark" ? "light mode" : "dark mode"
+                theme.palette.mode === "dark" ? "light-mode" : "dark-mode"
               }
+              label="Mode"
             >
-              {theme.palette.mode === "dark" ? "light mode" : "dark mode"}
-            </Button>
+              {theme.palette.mode === "dark" ? <LightMode /> : <DarkMode />}
+            </IconButton>
           </Tooltip>
         </Box>
         <Box sx={{ flexGrow: 0 }}>
