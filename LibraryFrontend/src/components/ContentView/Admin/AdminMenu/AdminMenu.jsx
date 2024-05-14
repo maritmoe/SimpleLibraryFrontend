@@ -1,50 +1,51 @@
-import { Button, Stack, Tooltip } from "@mui/material";
+import { EditNote, Group, LibraryAdd, LibraryBooks } from "@mui/icons-material";
+import { Tab, Tabs } from "@mui/material";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function AdminMenu() {
   const navigate = useNavigate();
+  const [tabValue, setTabValue] = useState(0);
+
+  const handleChange = (event, newValue) => {
+    setTabValue(newValue);
+  };
   return (
-    <Stack sx={{ gap: 2 }}>
-      <h2>Admin Site</h2>
-      <Tooltip title="Create and Add New Book to Library">
-        <Button
-          variant="contained"
-          color="secondary"
+    <>
+      <Tabs
+        value={tabValue}
+        onChange={handleChange}
+        aria-label="Admin menu"
+        variant="scrollable"
+        scrollButtons
+        allowScrollButtonsMobile
+        textColor="secondary"
+        indicatorColor="secondary"
+      >
+        <Tab
+          icon={<LibraryAdd />}
+          label="Create book"
           onClick={() => navigate("/admin/add")}
-        >
-          Create Book
-        </Button>
-      </Tooltip>
-      <Tooltip title="Edit a Book">
-        <Button
-          variant="contained"
-          color="secondary"
+        />
+        <Tab
+          icon={<EditNote />}
+          label="Edit book"
           disabled
           onClick={() => navigate("/admin/books/:bookId")}
-        >
-          Edit Book
-        </Button>
-      </Tooltip>
-      <Tooltip title="Get All Users of Library">
-        <Button
-          variant="contained"
-          color="secondary"
+        />
+        <Tab
+          icon={<Group />}
+          label="Get users"
           onClick={() => navigate("/admin/users")}
-        >
-          Get All Users
-        </Button>
-      </Tooltip>
-      <Tooltip title="Get All Borrowings">
-        <Button
-          variant="contained"
-          color="secondary"
+        />
+        <Tab
+          icon={<LibraryBooks />}
+          label="Get borrowings"
           disabled
           onClick={() => navigate("/admin/borrowings")}
-        >
-          Borrowings
-        </Button>
-      </Tooltip>
-    </Stack>
+        />
+      </Tabs>
+    </>
   );
 }
 
