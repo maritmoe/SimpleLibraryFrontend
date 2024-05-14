@@ -1,0 +1,15 @@
+.create-book-box {
+  display: grid;
+  place-content: center;
+}
+
+.create-book-form {
+  display: grid;
+  gap: 10px;
+}
+
+.create-book-form-big {
+  display: grid;
+  grid-template-columns: 200px 200px 200px;
+  gap: 10px;
+}

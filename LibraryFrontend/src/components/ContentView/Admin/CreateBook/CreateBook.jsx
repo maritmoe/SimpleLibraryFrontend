@@ -1,13 +1,6 @@
-import {
-  Box,
-  Button,
-  Container,
-  Dialog,
-  Stack,
-  TextField,
-  Tooltip,
-} from "@mui/material";
+import { Button, Dialog, TextField, Tooltip } from "@mui/material";
 import { useState } from "react";
+import "./CreateBook.css";
 
 function CreateBook() {
   const [book, setBook] = useState({
@@ -45,65 +38,52 @@ function CreateBook() {
   };
 
   return (
-    <Stack sx={{ gap: 2 }}>
+    <div className="create-book-box">
       <h2>Add New Book To Library</h2>
-      <Box
-        component="form"
-        sx={{
-          "& .MuiTextField-root": { m: 1, width: "25ch" },
-        }}
-        autoComplete="off"
+      <form
+        className={
+          window.innerWidth > 700 ? "create-book-form-big" : "create-book-form"
+        }
         onSubmit={handleSubmit}
       >
-        <Container>
-          <TextField
-            label="Title"
-            name="title"
-            InputLabelProps={{
-              shrink: true,
-            }}
-            required
-            onChange={handleChange}
-            value={book.title}
-          />
-          <TextField
-            label="Pages"
-            name="pages"
-            type="number"
-            InputLabelProps={{
-              shrink: true,
-            }}
-            required
-            onChange={handleChange}
-            value={book.pages}
-          />
-          <TextField disabled label="Year" defaultValue="Year" required />
-        </Container>
-        <Container>
-          <TextField
-            disabled
-            label="Language"
-            defaultValue="Language"
-            required
-          />
-          <TextField disabled label="Author" defaultValue="Author" required />
-          <TextField disabled label="Genre" defaultValue="Genre" required />
-        </Container>
-        <Container sx={{ m: 1 }}>
-          <Tooltip title="Create and Add New Book to Library">
-            <Button variant="outlined" color="secondary" type="submit">
-              Add Book
-            </Button>
-          </Tooltip>
-        </Container>
-      </Box>
+        <TextField
+          label="Title"
+          name="title"
+          InputLabelProps={{
+            shrink: true,
+          }}
+          required
+          onChange={handleChange}
+          value={book.title}
+        />
+        <TextField
+          label="Pages"
+          name="pages"
+          type="number"
+          InputLabelProps={{
+            shrink: true,
+          }}
+          required
+          onChange={handleChange}
+          value={book.pages}
+        />
+        <TextField disabled label="Year" defaultValue="Year" required />
+        <TextField disabled label="Language" defaultValue="Language" required />
+        <TextField disabled label="Author" defaultValue="Author" required />
+        <TextField disabled label="Genre" defaultValue="Genre" required />
+        <Tooltip title="Create and Add New Book to Library">
+          <Button variant="outlined" color="secondary" type="submit">
+            Add Book
+          </Button>
+        </Tooltip>
+      </form>
       <Dialog onClose={handleClose} open={open}>
         <p>
           Successfully added new book to the library. See console log for
           details.
         </p>
       </Dialog>
-    </Stack>
+    </div>
   );
 }
 
