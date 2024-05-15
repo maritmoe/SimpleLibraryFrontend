@@ -51,7 +51,6 @@ function AdminMenu() {
         <Tab
           icon={<LibraryBooks />}
           label="Get borrowings"
-          disabled
           onClick={() => navigate("/admin/borrowings")}
         />
       </Tabs>
