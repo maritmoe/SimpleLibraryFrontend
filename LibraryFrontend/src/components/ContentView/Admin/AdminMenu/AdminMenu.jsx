@@ -1,4 +1,10 @@
-import { EditNote, Group, LibraryAdd, LibraryBooks } from "@mui/icons-material";
+import {
+  EditNote,
+  Group,
+  LibraryAdd,
+  LibraryAddTwoTone,
+  LibraryBooks,
+} from "@mui/icons-material";
 import { Tab, Tabs } from "@mui/material";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -26,6 +32,11 @@ function AdminMenu() {
           icon={<LibraryAdd />}
           label="Create book"
           onClick={() => navigate("/admin/add")}
+        />
+        <Tab
+          icon={<LibraryAddTwoTone />}
+          label="Create multiple books"
+          onClick={() => navigate("/admin/add/multiple")}
         />
         <Tab
           icon={<EditNote />}

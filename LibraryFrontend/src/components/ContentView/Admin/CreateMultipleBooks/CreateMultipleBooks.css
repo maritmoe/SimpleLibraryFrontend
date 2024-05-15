@@ -1,0 +1,9 @@
+.add-multiple-form {
+  display: grid;
+  place-content: center;
+  gap: 10px;
+}
+
+.file-upload-error-message {
+  text-align: center;
+}
