@@ -4,7 +4,12 @@ import "./UserListItem.css";
 function UserListItem({ user }) {
   return (
     <li className="user-list-item">
-      <p>User ID: {user.id}</p>
+      <p>
+        User ID:{" "}
+        <a href={`/profile/${user.id}`} aria-label={`User ${user.id}`}>
+          {user.id}
+        </a>
+      </p>
       <p className="user-name">{user.name}</p>
     </li>
   );

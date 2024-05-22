@@ -1,18 +1,20 @@
 import { Box, Button, TextField, Tooltip } from "@mui/material";
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
 function ProfileView() {
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
-  const currentUser = 1;
+  const { userId } = useParams();
 
   useEffect(() => {
     fetchUser();
-  }, []);
+  }, [userId]);
 
   const fetchUser = () => {
-    fetch(`http://localhost:5114/library/users/${currentUser}`)
+    // TODO: check that userId from path is same as current user or current user is an admin
+    fetch(`http://localhost:5114/library/users/${userId}`)
       .then((response) => {
         const data = response.json();
         if (response.status == 200) {
@@ -38,13 +40,16 @@ function ProfileView() {
   const handleSubmit = (event) => {
     event.preventDefault();
     if (user.name && user.id) {
-      fetch(`http://localhost:5114/library/users/${currentUser}`, {
+      // TODO: check that userId from path is same as current user or current user is an admin
+      fetch(`http://localhost:5114/library/users/${userId}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(user),
       })
         .then((response) => response.json())
-        .then((data) => console.log(data));
+        .then((data) =>
+          alert("New name of user with id " + data.id + " is: " + data.name)
+        );
     }
   };
 

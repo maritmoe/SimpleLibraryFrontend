@@ -45,7 +45,7 @@ function App() {
           <Routes>
             <Route path="/" element={<ContentView />} />
             <Route path="/book/:bookId" element={<BookView />} />
-            <Route path="/profile" element={<ProfileView />} />
+            <Route path="/profile/:userId" element={<ProfileView />} />
             <Route path="/borrowings" element={<BorrowingHistory />} />
             <Route path="/admin/*" element={<Admin />} />
           </Routes>

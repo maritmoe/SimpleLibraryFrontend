@@ -39,7 +39,9 @@ function NavigationBar() {
 
   const handleProfileClick = () => {
     handleCloseUserMenu();
-    navigate("/profile");
+    // TODO: navigate to current user
+    // Navigates to default user with id 1
+    navigate("/profile/1");
   };
 
   const handleMyBorrowingsClick = () => {
