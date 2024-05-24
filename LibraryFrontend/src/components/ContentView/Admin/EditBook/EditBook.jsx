@@ -47,7 +47,10 @@ function EditBook() {
     if (book.title && book.pages) {
       fetch(`http://localhost:5114/library/books/${bookId}`, {
         method: "PUT",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify(book),
       })
         .then((response) => response.json())

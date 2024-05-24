@@ -3,7 +3,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import "./App.css";
 
 import { createContext, useState, useMemo } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 
 import NavigationBar from "./components/NavigationBar/NavigationBar";
 import ContentView from "./components/ContentView/ContentView";
@@ -11,10 +11,39 @@ import ProfileView from "./components/ContentView/Profile/ProfileView";
 import Admin from "./components/ContentView/Admin/Admin";
 import BorrowingHistory from "./components/ContentView/BorrowingHistory/BorrowingHistory";
 import BookView from "./components/ContentView/BookView/BookView";
+import Register from "./components/ContentView/Register/Register";
+import LogIn from "./components/ContentView/LogIn/LogIn";
 
 const ColorModeContext = createContext({ toggleColorMode: () => {} });
 
+const AuthContext = createContext();
+
 function App() {
+  const navigate = useNavigate();
+
+  const [authToken, setAuthToken] = useState(
+    localStorage.getItem("authToken") || ""
+  );
+
+  // called when we successfully log in
+  const login = (data) => {
+    setAuthToken(data.token);
+    // update local storage
+    localStorage.setItem("authToken", data.token);
+    // redirect to home page after login
+    navigate("/");
+  };
+
+  // called to log out, clear local storage and reset local state
+  const logout = () => {
+    // reset auth token state
+    setAuthToken("");
+    // clear local storage
+    localStorage.removeItem("authToken");
+    // redirect to login page
+    navigate("/login");
+  };
+
   const [mode, setMode] = useState("light");
 
   const colorMode = useMemo(
@@ -40,19 +69,23 @@ function App() {
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <NavigationBar />
-        <div className="main-container">
-          <Routes>
-            <Route path="/" element={<ContentView />} />
-            <Route path="/book/:bookId" element={<BookView />} />
-            <Route path="/profile/:userId" element={<ProfileView />} />
-            <Route path="/borrowings" element={<BorrowingHistory />} />
-            <Route path="/admin/*" element={<Admin />} />
-          </Routes>
-        </div>
+        <AuthContext.Provider value={{ authToken, login, logout }}>
+          <NavigationBar />
+          <div className="main-container">
+            <Routes>
+              <Route path="/" element={<ContentView />} />
+              <Route path="/book/:bookId" element={<BookView />} />
+              <Route path="/profile/:userId" element={<ProfileView />} />
+              <Route path="/borrowings" element={<BorrowingHistory />} />
+              <Route path="/admin/*" element={<Admin />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/login" element={<LogIn />} />
+            </Routes>
+          </div>
+        </AuthContext.Provider>
       </ThemeProvider>
     </ColorModeContext.Provider>
   );
 }
 
-export { App, ColorModeContext };
+export { App, ColorModeContext, AuthContext };

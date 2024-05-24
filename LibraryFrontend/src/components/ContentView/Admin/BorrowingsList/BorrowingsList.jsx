@@ -11,7 +11,13 @@ function BorrowingsList() {
   }, []);
 
   const fetchBorrowings = () => {
-    fetch(`http://localhost:5114/library/borrowings/`)
+    fetch(`http://localhost:5114/library/borrowings/`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+        "Content-Type": "application/json",
+      },
+    })
       .then((response) => response.json())
       .then((data) => setBorrowings(data))
       .catch((error) => setError(error));

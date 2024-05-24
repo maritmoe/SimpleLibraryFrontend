@@ -18,7 +18,10 @@ function CreateMultipleBooks() {
     event.preventDefault();
     fetch("http://localhost:5114/library/books/multiple", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify(fileContent),
     })
       .then((response) => response.json())

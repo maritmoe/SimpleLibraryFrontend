@@ -11,7 +11,13 @@ function UserList() {
   }, []);
 
   const fetchUsers = () => {
-    fetch("http://localhost:5114/library/users")
+    fetch("http://localhost:5114/library/users", {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+        "Content-Type": "application/json",
+      },
+    })
       .then((response) => response.json())
       .then((data) => setUsers(data))
       .catch((error) => setError(error));

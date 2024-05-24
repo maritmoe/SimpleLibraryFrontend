@@ -12,7 +12,13 @@ function BorrowingHistory() {
   }, []);
 
   const fetchBorrowings = () => {
-    fetch(`http://localhost:5114/library/borrowings/${currentUser}`)
+    fetch(`http://localhost:5114/library/borrowings/${currentUser}`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+        "Content-Type": "application/json",
+      },
+    })
       .then((response) => response.json())
       .then((data) => setBorrowings(data))
       .catch((error) => setError(error));

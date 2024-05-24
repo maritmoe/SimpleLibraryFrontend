@@ -14,7 +14,13 @@ function ProfileView() {
 
   const fetchUser = () => {
     // TODO: check that userId from path is same as current user or current user is an admin
-    fetch(`http://localhost:5114/library/users/${userId}`)
+    fetch(`http://localhost:5114/library/users/${userId}`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+        "Content-Type": "application/json",
+      },
+    })
       .then((response) => {
         const data = response.json();
         if (response.status == 200) {
@@ -43,7 +49,10 @@ function ProfileView() {
       // TODO: check that userId from path is same as current user or current user is an admin
       fetch(`http://localhost:5114/library/users/${userId}`, {
         method: "PUT",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify(user),
       })
         .then((response) => response.json())
