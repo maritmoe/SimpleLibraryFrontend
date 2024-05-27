@@ -45,10 +45,7 @@ function NavigationBar() {
 
   const handleProfileClick = () => {
     handleCloseUserMenu();
-    // TODO: navigate to current user
-    // Navigates to default user with id testId
-    const testId = "459eb0ba-d275-4a8a-b8ef-4304a9d8b4dc";
-    navigate(`/profile/${testId}`);
+    navigate(`/profile/${user.id}`);
   };
 
   const handleMyBorrowingsClick = () => {
@@ -111,7 +108,7 @@ function NavigationBar() {
         <Box sx={{ flexGrow: 0 }}>
           <Tooltip title="Open settings">
             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-              {user ? (
+              {user.id ? (
                 <Avatar alt="Profile picture" src="" />
               ) : (
                 <Avatar>
@@ -136,7 +133,7 @@ function NavigationBar() {
             open={Boolean(anchorElUser)}
             onClose={handleCloseUserMenu}
           >
-            {user && (
+            {user.id && (
               <>
                 <MenuItem onClick={handleProfileClick}>
                   <Typography textAlign="center">Profile</Typography>
@@ -149,7 +146,7 @@ function NavigationBar() {
                 </MenuItem>
               </>
             )}
-            {!user && (
+            {!user.id && (
               <>
                 <MenuItem onClick={handleLoginClick}>
                   <Typography textAlign="center">Login</Typography>

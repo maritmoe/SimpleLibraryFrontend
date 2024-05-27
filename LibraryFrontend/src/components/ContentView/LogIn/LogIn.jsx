@@ -1,13 +1,11 @@
-import { useState, useContext, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useState, useContext } from "react";
+import { Link } from "react-router-dom";
 import { AuthContext } from "../../../App";
 
 function LogIn() {
-  const { user, login, logout } = useContext(AuthContext);
+  const { login } = useContext(AuthContext);
 
   const [invalid, setInvalid] = useState(false);
-
-  const navigate = useNavigate();
 
   const [loginDetails, setLoginDetails] = useState({
     email: "",
@@ -18,14 +16,6 @@ function LogIn() {
     const { name, value } = event.target;
     setLoginDetails({ ...loginDetails, [name]: value });
   };
-
-  // log out and redirect to homepage if already logged in
-  useEffect(() => {
-    if (user) {
-      logout();
-      navigate("/");
-    }
-  }, [user, navigate, logout]);
 
   function handleSubmit(event) {
     event.preventDefault();

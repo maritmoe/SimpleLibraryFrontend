@@ -25,14 +25,22 @@ function App() {
     localStorage.getItem("authToken") || ""
   );
 
-  const [user, setUser] = useState("");
+  const [user, setUser] = useState({
+    id: "",
+    email: "",
+    name: "",
+    role: "",
+  });
 
   // called when we successfully log in
   const login = (data) => {
     setAuthToken(data.token);
-    // TODO: set correct user id or user object
-    setUser("test");
-    // TODO: set role to check for admin privileges
+    setUser({
+      id: data.id,
+      email: data.email,
+      name: data.name,
+      role: data.role,
+    });
 
     // update local storage
     localStorage.setItem("authToken", data.token);
@@ -44,7 +52,12 @@ function App() {
   const logout = () => {
     // reset auth token state
     setAuthToken("");
-    setUser("");
+    setUser({
+      id: "",
+      email: "",
+      name: "",
+      role: "",
+    });
     // clear local storage
     localStorage.removeItem("authToken");
     // redirect to login page
