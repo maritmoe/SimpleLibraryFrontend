@@ -68,6 +68,23 @@ function ProfileView() {
     }
   };
 
+  const handleDelete = () => {
+    // Checks that the user being deleted is the logged in user or an admin
+    if (userId === user.id || user.role === "Admin") {
+      fetch(`http://localhost:5114/library/users/${userId}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+          "Content-Type": "application/json",
+        },
+      })
+        .then((response) => response.json())
+        .then((data) =>
+          alert("User " + data.id + " " + data.name + " was deleted")
+        );
+    }
+  };
+
   return (
     <div>
       {error && <p>Error: {error.message}</p>}
@@ -97,6 +114,17 @@ function ProfileView() {
             <Tooltip title="Update profile of user">
               <Button variant="outlined" color="secondary" type="submit">
                 Update User
+              </Button>
+            </Tooltip>
+          </Box>
+          <Box>
+            <Tooltip title={`Delete profile of user with id ${userId}`}>
+              <Button
+                variant="outlined"
+                color="secondary"
+                onClick={handleDelete}
+              >
+                Delete User
               </Button>
             </Tooltip>
           </Box>
