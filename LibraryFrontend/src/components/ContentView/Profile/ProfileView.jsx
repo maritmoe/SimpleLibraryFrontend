@@ -1,19 +1,23 @@
 import { Box, Button, TextField, Tooltip } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { AuthContext } from "../../../App";
 
 function ProfileView() {
-  const [user, setUser] = useState(null);
+  const [userForm, setUserForm] = useState(null);
   const [error, setError] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
   const { userId } = useParams();
+  const { user } = useContext(AuthContext);
 
   useEffect(() => {
-    fetchUser();
+    // Checks that the user being fetched is the logged in user or an admin
+    if (userId === user.id || user.role === "Admin") {
+      fetchUser();
+    }
   }, [userId]);
 
   const fetchUser = () => {
-    // TODO: check that userId from path is same as current user or current user is an admin
     fetch(`http://localhost:5114/library/users/${userId}`, {
       method: "GET",
       headers: {
@@ -25,13 +29,13 @@ function ProfileView() {
         const data = response.json();
         if (response.status == 200) {
           data.then((value) => {
-            setUser(value);
+            setUserForm(value);
             setErrorMessage(null);
           });
         } else {
           data.then((value) => {
             setErrorMessage(value);
-            setUser(null);
+            setUserForm(null);
           });
         }
       })
@@ -40,25 +44,27 @@ function ProfileView() {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    setUser({ ...user, [name]: value });
+    setUserForm({ ...userForm, [name]: value });
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (user.name && user.id) {
-      // TODO: check that userId from path is same as current user or current user is an admin
-      fetch(`http://localhost:5114/library/users/${userId}`, {
-        method: "PUT",
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("authToken")}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(user),
-      })
-        .then((response) => response.json())
-        .then((data) =>
-          alert("New name of user with id " + data.id + " is: " + data.name)
-        );
+    if (userForm.name && userForm.id) {
+      // Checks that the user being edited is the logged in user or an admin
+      if (userId === user.id || user.role === "Admin") {
+        fetch(`http://localhost:5114/library/users/${userId}`, {
+          method: "PUT",
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(userForm),
+        })
+          .then((response) => response.json())
+          .then((data) =>
+            alert("New name of user with id " + data.id + " is: " + data.name)
+          );
+      }
     }
   };
 
@@ -67,7 +73,7 @@ function ProfileView() {
       {error && <p>Error: {error.message}</p>}
       {errorMessage && <p>Error: {errorMessage}</p>}
       <h2>Profile</h2>
-      {user && (
+      {userForm && (
         <Box
           component="form"
           sx={{
@@ -76,7 +82,7 @@ function ProfileView() {
           autoComplete="off"
           onSubmit={handleSubmit}
         >
-          <p>ID: {user.id}</p>
+          <p>ID: {userForm.id}</p>
           <TextField
             label="Name"
             name="name"
@@ -85,7 +91,7 @@ function ProfileView() {
             }}
             required
             onChange={handleChange}
-            value={user.name}
+            value={userForm.name}
           />
           <Box>
             <Tooltip title="Update profile of user">
