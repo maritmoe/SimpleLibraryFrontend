@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 
-import { ColorModeContext } from "../../App";
+import { AuthContext, ColorModeContext } from "../../App";
 
 import "./NavigationBar.css";
 
@@ -19,13 +19,19 @@ import {
   Tooltip,
   Typography,
 } from "@mui/material";
-import { LightMode, DarkMode, AdminPanelSettings } from "@mui/icons-material";
+import {
+  LightMode,
+  DarkMode,
+  AdminPanelSettings,
+  Login,
+} from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 
 function NavigationBar() {
   const theme = useTheme();
   const colorMode = useContext(ColorModeContext);
   const navigate = useNavigate();
+  const { user, logout } = useContext(AuthContext);
 
   const [anchorElUser, setAnchorElUser] = useState(null);
 
@@ -40,13 +46,29 @@ function NavigationBar() {
   const handleProfileClick = () => {
     handleCloseUserMenu();
     // TODO: navigate to current user
-    // Navigates to default user with id 1
-    navigate("/profile/1");
+    // Navigates to default user with id testId
+    const testId = "459eb0ba-d275-4a8a-b8ef-4304a9d8b4dc";
+    navigate(`/profile/${testId}`);
   };
 
   const handleMyBorrowingsClick = () => {
     handleCloseUserMenu();
     navigate("/borrowings");
+  };
+
+  const handleLogoutClick = () => {
+    handleCloseUserMenu();
+    logout();
+  };
+
+  const handleLoginClick = () => {
+    handleCloseUserMenu();
+    navigate("/login");
+  };
+
+  const handleRegistrationClick = () => {
+    handleCloseUserMenu();
+    navigate("/register");
   };
 
   return (
@@ -89,7 +111,13 @@ function NavigationBar() {
         <Box sx={{ flexGrow: 0 }}>
           <Tooltip title="Open settings">
             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-              <Avatar alt="Profile picture" src="" />
+              {user ? (
+                <Avatar alt="Profile picture" src="" />
+              ) : (
+                <Avatar>
+                  <Login />
+                </Avatar>
+              )}
             </IconButton>
           </Tooltip>
           <Menu
@@ -108,15 +136,29 @@ function NavigationBar() {
             open={Boolean(anchorElUser)}
             onClose={handleCloseUserMenu}
           >
-            <MenuItem onClick={handleProfileClick}>
-              <Typography textAlign="center">Profile</Typography>
-            </MenuItem>
-            <MenuItem onClick={handleMyBorrowingsClick}>
-              <Typography textAlign="center">My Borrowings</Typography>
-            </MenuItem>
-            <MenuItem onClick={handleCloseUserMenu}>
-              <Typography textAlign="center">Logout</Typography>
-            </MenuItem>
+            {user && (
+              <>
+                <MenuItem onClick={handleProfileClick}>
+                  <Typography textAlign="center">Profile</Typography>
+                </MenuItem>
+                <MenuItem onClick={handleMyBorrowingsClick}>
+                  <Typography textAlign="center">My Borrowings</Typography>
+                </MenuItem>
+                <MenuItem onClick={handleLogoutClick}>
+                  <Typography textAlign="center">Logout</Typography>
+                </MenuItem>
+              </>
+            )}
+            {!user && (
+              <>
+                <MenuItem onClick={handleLoginClick}>
+                  <Typography textAlign="center">Login</Typography>
+                </MenuItem>
+                <MenuItem onClick={handleRegistrationClick}>
+                  <Typography textAlign="center">Register</Typography>
+                </MenuItem>
+              </>
+            )}
           </Menu>
         </Box>
       </Toolbar>

@@ -25,9 +25,15 @@ function App() {
     localStorage.getItem("authToken") || ""
   );
 
+  const [user, setUser] = useState("");
+
   // called when we successfully log in
   const login = (data) => {
     setAuthToken(data.token);
+    // TODO: set correct user id or user object
+    setUser("test");
+    // TODO: set role to check for admin privileges
+
     // update local storage
     localStorage.setItem("authToken", data.token);
     // redirect to home page after login
@@ -38,6 +44,7 @@ function App() {
   const logout = () => {
     // reset auth token state
     setAuthToken("");
+    setUser("");
     // clear local storage
     localStorage.removeItem("authToken");
     // redirect to login page
@@ -69,7 +76,7 @@ function App() {
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <AuthContext.Provider value={{ authToken, login, logout }}>
+        <AuthContext.Provider value={{ authToken, login, logout, user }}>
           <NavigationBar />
           <div className="main-container">
             <Routes>
