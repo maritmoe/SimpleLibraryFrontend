@@ -5,7 +5,6 @@ import { AuthContext } from "../../../../App";
 
 function BorrowBook({ book }) {
   const { user } = useContext(AuthContext);
-  const currentUser = 1; // TODO: use id of current user
   const [borrowing, setBorrowing] = useState({
     userId: "",
     bookId: "",
@@ -17,7 +16,7 @@ function BorrowBook({ book }) {
     const today = new Date().toISOString().split("T")[0]; // Example date: 2024-05-13
     setBorrowing({
       ...borrowing,
-      userId: currentUser,
+      userId: user.id,
       bookId: book.id,
       borrowedDate: today,
     });
