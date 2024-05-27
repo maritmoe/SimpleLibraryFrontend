@@ -77,16 +77,18 @@ function NavigationBar() {
           </Button>
         </Tooltip>
         <Box>
-          <Tooltip title="Navigate to admin menu">
-            <IconButton
-              sx={{ width: "50px", height: "50px" }}
-              onClick={() => navigate("/admin/add")}
-              aria-label="Admin"
-              label="Admin"
-            >
-              <AdminPanelSettings />
-            </IconButton>
-          </Tooltip>
+          {user.role === "Admin" && (
+            <Tooltip title="Navigate to admin menu">
+              <IconButton
+                sx={{ width: "50px", height: "50px" }}
+                onClick={() => navigate("/admin/add")}
+                aria-label="Admin"
+                label="Admin"
+              >
+                <AdminPanelSettings />
+              </IconButton>
+            </Tooltip>
+          )}
           <Tooltip
             title={
               theme.palette.mode === "dark"
