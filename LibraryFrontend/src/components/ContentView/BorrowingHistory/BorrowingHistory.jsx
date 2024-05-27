@@ -5,7 +5,7 @@ import "./BorrowingHistory.css";
 function BorrowingHistory() {
   const [borrowings, setBorrowings] = useState([]);
   const [error, setError] = useState(null);
-  const currentUser = 1;
+  const currentUser = 1; // TODO: use current user
 
   useEffect(() => {
     fetchBorrowings();

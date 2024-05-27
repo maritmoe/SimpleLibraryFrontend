@@ -1,9 +1,11 @@
 import PropTypes from "prop-types";
 import { Box, Button, Tooltip } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../../../../App";
 
 function BorrowBook({ book }) {
-  const currentUser = 1;
+  const { user } = useContext(AuthContext);
+  const currentUser = 1; // TODO: use id of current user
   const [borrowing, setBorrowing] = useState({
     userId: "",
     bookId: "",
@@ -23,7 +25,9 @@ function BorrowBook({ book }) {
 
   const handleBorrowing = (event) => {
     event.preventDefault();
-    if (borrowing.userId && borrowing.bookId && borrowing.borrowedDate) {
+    if (!user) {
+      alert("You have to log in to borrow a book");
+    } else if (borrowing.userId && borrowing.bookId && borrowing.borrowedDate) {
       fetch("http://localhost:5114/library/borrowings", {
         method: "POST",
         headers: {
