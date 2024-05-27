@@ -27,8 +27,8 @@ function BorrowingHistory() {
   return (
     <div className="borrowing-history">
       {error && <p>{error.message}</p>}
-      {borrowings && <h2>Borrowing History</h2>}
-      {borrowings && (
+      <h2>Borrowing History</h2>
+      {borrowings[0] && (
         <table>
           <thead>
             <tr>
