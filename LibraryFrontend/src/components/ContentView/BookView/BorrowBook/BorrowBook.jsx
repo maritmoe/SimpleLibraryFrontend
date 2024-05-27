@@ -26,7 +26,10 @@ function BorrowBook({ book }) {
     if (borrowing.userId && borrowing.bookId && borrowing.borrowedDate) {
       fetch("http://localhost:5114/library/borrowings", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify(borrowing),
       })
         .then((response) => response.json())
