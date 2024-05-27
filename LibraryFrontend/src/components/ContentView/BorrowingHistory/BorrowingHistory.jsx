@@ -1,18 +1,19 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import BorrowingHistoryItem from "./BorrowingHistoryItem/BorrowingHistoryItem";
 import "./BorrowingHistory.css";
+import { AuthContext } from "../../../App";
 
 function BorrowingHistory() {
   const [borrowings, setBorrowings] = useState([]);
   const [error, setError] = useState(null);
-  const currentUser = 1; // TODO: use current user
+  const { user } = useContext(AuthContext);
 
   useEffect(() => {
     fetchBorrowings();
   }, []);
 
   const fetchBorrowings = () => {
-    fetch(`http://localhost:5114/library/borrowings/${currentUser}`, {
+    fetch(`http://localhost:5114/library/borrowings/${user.id}`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("authToken")}`,
@@ -27,7 +28,7 @@ function BorrowingHistory() {
   return (
     <div className="borrowing-history">
       {error && <p>{error.message}</p>}
-      <h2>Borrowing History</h2>
+      <h2>Borrowing History of {user.name}</h2>
       {borrowings[0] && (
         <table>
           <thead>
