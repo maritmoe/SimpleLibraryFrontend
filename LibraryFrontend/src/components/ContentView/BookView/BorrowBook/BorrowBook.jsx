@@ -42,9 +42,9 @@ function BorrowBook({ book }) {
 
   return (
     <Box>
-      <Tooltip title="Borrow book">
+      <Tooltip title={`Borrow "${book.title}"`}>
         <Button variant="outlined" color="secondary" onClick={handleBorrowing}>
-          Borrow Book {book.id}
+          Borrow Book
         </Button>
       </Tooltip>
     </Box>

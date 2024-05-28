@@ -130,16 +130,16 @@ function EditBook() {
             />
             <TextField disabled label="Author" defaultValue="Author" required />
             <TextField disabled label="Genre" defaultValue="Genre" required />
-            <Tooltip title="Edit Book">
+            <Tooltip title="Edit book">
               <Button variant="outlined" color="secondary" type="submit">
-                Update Book
+                Edit Book
               </Button>
             </Tooltip>
           </form>
         </>
       )}
       <Dialog onClose={handleClose} open={open}>
-        <p>Successfully updated the book. See console log for details.</p>
+        <p>Successfully edited the book. See console log for details.</p>
       </Dialog>
     </div>
   );

@@ -34,7 +34,7 @@ function BookListItem({ book }) {
                 </Fragment>
               }
             />
-            <Tooltip title={`Navigate to BookView for book with id ${book.id}`}>
+            <Tooltip title={`View more details about "${book.title}"`}>
               <Button
                 variant="text"
                 color="secondary"

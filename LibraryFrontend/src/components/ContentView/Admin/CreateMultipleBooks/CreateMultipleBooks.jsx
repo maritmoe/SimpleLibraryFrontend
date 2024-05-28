@@ -37,7 +37,7 @@ function CreateMultipleBooks() {
         setFileContent(JSON.parse(fileReader.result));
         setError(null);
       } catch (e) {
-        setError("Not a valid JSON file!");
+        setError("Not a valid JSON file");
       }
     };
     if (uploadedFile !== undefined) fileReader.readAsText(uploadedFile);
@@ -59,7 +59,7 @@ function CreateMultipleBooks() {
           required
           onChange={(e) => readFileOnUpload(e.target.files[0])}
         />
-        <Tooltip title="Create and Add Multiple Books">
+        <Tooltip title="Create and add multiple books">
           <Button variant="outlined" color="secondary" type="submit">
             Add Books
           </Button>

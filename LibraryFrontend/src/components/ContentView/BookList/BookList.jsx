@@ -7,6 +7,7 @@ import {
   List,
   MenuItem,
   Select,
+  Tooltip,
 } from "@mui/material";
 import { useState } from "react";
 
@@ -44,28 +45,32 @@ function BookList({ data, error }) {
           <Container sx={{ display: "grid", gridTemplateColumns: "50% 50%" }}>
             <Box>
               <InputLabel id="filter-label">Filter</InputLabel>
-              <Select
-                labelId="filter-label"
-                value={filterValue}
-                onChange={(event) => setFilterValue(event.target.value)}
-              >
-                <MenuItem value="show-all">None</MenuItem>
-                <MenuItem value="long-books">Long books</MenuItem>
-                <MenuItem value="short-books">Short books</MenuItem>
-              </Select>
+              <Tooltip title="Select a filtering option" placement="left-start">
+                <Select
+                  labelId="filter-label"
+                  value={filterValue}
+                  onChange={(event) => setFilterValue(event.target.value)}
+                >
+                  <MenuItem value="show-all">None</MenuItem>
+                  <MenuItem value="long-books">Long Books</MenuItem>
+                  <MenuItem value="short-books">Short Books</MenuItem>
+                </Select>
+              </Tooltip>
             </Box>
             <Box>
               <InputLabel id="sort-label">Sort</InputLabel>
-              <Select
-                labelId="sort-label"
-                value={sortValue}
-                onChange={(event) => setSortValue(event.target.value)}
-              >
-                <MenuItem value="no-sorting">None</MenuItem>
-                <MenuItem value="shortest">Length increasing</MenuItem>
-                <MenuItem value="longest">Length decreasing</MenuItem>
-                <MenuItem value="title">Title alphabetic</MenuItem>
-              </Select>
+              <Tooltip title="Select a sorting option" placement="right-start">
+                <Select
+                  labelId="sort-label"
+                  value={sortValue}
+                  onChange={(event) => setSortValue(event.target.value)}
+                >
+                  <MenuItem value="no-sorting">None</MenuItem>
+                  <MenuItem value="shortest">Length Increasing</MenuItem>
+                  <MenuItem value="longest">Length Decreasing</MenuItem>
+                  <MenuItem value="title">Title Alphabetic</MenuItem>
+                </Select>
+              </Tooltip>
             </Box>
           </Container>
           <List sx={{ width: "100%", maxWidth: 360 }}>

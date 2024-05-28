@@ -111,14 +111,14 @@ function ProfileView() {
             value={userForm.name}
           />
           <Box>
-            <Tooltip title="Update profile of user">
+            <Tooltip title="Update profile of user" placement="right-start">
               <Button variant="outlined" color="secondary" type="submit">
                 Update User
               </Button>
             </Tooltip>
           </Box>
           <Box>
-            <Tooltip title={`Delete profile of user with id ${userId}`}>
+            <Tooltip title="Delete profile of user" placement="right-start">
               <Button
                 variant="outlined"
                 color="secondary"

@@ -74,7 +74,7 @@ function CreateBook() {
         <TextField disabled label="Language" defaultValue="Language" required />
         <TextField disabled label="Author" defaultValue="Author" required />
         <TextField disabled label="Genre" defaultValue="Genre" required />
-        <Tooltip title="Create and Add New Book to Library">
+        <Tooltip title="Create and add new book to library">
           <Button variant="outlined" color="secondary" type="submit">
             Add Book
           </Button>

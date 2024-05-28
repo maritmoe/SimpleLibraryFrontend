@@ -23,7 +23,7 @@ import {
   LightMode,
   DarkMode,
   AdminPanelSettings,
-  Login,
+  Settings,
 } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 
@@ -92,8 +92,8 @@ function NavigationBar() {
           <Tooltip
             title={
               theme.palette.mode === "dark"
-                ? "Click for Light mode"
-                : "Click for Dark mode"
+                ? "Click for light mode"
+                : "Click for dark mode"
             }
           >
             <IconButton
@@ -109,14 +109,12 @@ function NavigationBar() {
         </Box>
         <Box sx={{ flexGrow: 0 }}>
           <Tooltip title="Open settings">
-            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-              {user.id ? (
-                <Avatar alt="Profile picture" src="" />
-              ) : (
-                <Avatar>
-                  <Login />
-                </Avatar>
-              )}
+            <IconButton
+              sx={{ width: "50px", height: "50px" }}
+              onClick={handleOpenUserMenu}
+              aria-label="Settings"
+            >
+              {user.id ? <Avatar alt="Profile picture" src="" /> : <Settings />}
             </IconButton>
           </Tooltip>
           <Menu
@@ -144,14 +142,14 @@ function NavigationBar() {
                   <Typography textAlign="center">My Borrowings</Typography>
                 </MenuItem>
                 <MenuItem onClick={handleLogoutClick}>
-                  <Typography textAlign="center">Logout</Typography>
+                  <Typography textAlign="center">Log Out</Typography>
                 </MenuItem>
               </>
             )}
             {!user.id && (
               <>
                 <MenuItem onClick={handleLoginClick}>
-                  <Typography textAlign="center">Login</Typography>
+                  <Typography textAlign="center">Log In</Typography>
                 </MenuItem>
                 <MenuItem onClick={handleRegistrationClick}>
                   <Typography textAlign="center">Register</Typography>
