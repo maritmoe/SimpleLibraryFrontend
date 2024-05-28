@@ -1,7 +1,8 @@
-import { Box, Button, TextField, Tooltip } from "@mui/material";
+import { Box, Button, IconButton, TextField, Tooltip } from "@mui/material";
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { AuthContext } from "../../../App";
+import { Delete } from "@mui/icons-material";
 
 function ProfileView() {
   const [userForm, setUserForm] = useState(null);
@@ -89,7 +90,29 @@ function ProfileView() {
     <div>
       {error && <p>Error: {error.message}</p>}
       {errorMessage && <p>Error: {errorMessage}</p>}
-      <h2>Profile</h2>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          p: 1,
+          m: 1,
+          borderRadius: 1,
+        }}
+      >
+        <h2>Profile</h2>
+        {userForm && (
+          <Tooltip title="Delete profile of user" placement="right">
+            <IconButton
+              sx={{ width: "50px", height: "50px", mt: 1.5, ml: 2 }}
+              onClick={handleDelete}
+              color="secondary"
+              aria-label="Delete user"
+            >
+              <Delete />
+            </IconButton>
+          </Tooltip>
+        )}
+      </Box>
       {userForm && (
         <Box
           component="form"
@@ -114,17 +137,6 @@ function ProfileView() {
             <Tooltip title="Update profile of user" placement="right-start">
               <Button variant="outlined" color="secondary" type="submit">
                 Update User
-              </Button>
-            </Tooltip>
-          </Box>
-          <Box>
-            <Tooltip title="Delete profile of user" placement="right-start">
-              <Button
-                variant="outlined"
-                color="secondary"
-                onClick={handleDelete}
-              >
-                Delete User
               </Button>
             </Tooltip>
           </Box>
