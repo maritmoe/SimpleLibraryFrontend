@@ -1,6 +1,7 @@
 import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../App";
+import { Box, Button, Stack, TextField, Tooltip } from "@mui/material";
 
 function LogIn() {
   const { login } = useContext(AuthContext);
@@ -38,27 +39,47 @@ function LogIn() {
     <div>
       <h2>Log In</h2>
       {invalid && <span>Either the email or the password was incorrect</span>}
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Email</label>
-          <input
-            type="email"
-            name="email"
-            required
-            onChange={handleChange}
-            value={loginDetails.email}
-          />
-          <label>Password</label>
-          <input
-            type="password"
-            name="password"
-            required
-            onChange={handleChange}
-            value={loginDetails.password}
-          />
-        </div>
-        <button type="submit">Log In</button>
-      </form>
+      <Stack
+        component="form"
+        sx={{
+          "& .MuiTextField-root": { mb: 1 },
+        }}
+        autoComplete="off"
+        onSubmit={handleSubmit}
+      >
+        <TextField
+          label="Email"
+          name="email"
+          type="email"
+          InputLabelProps={{
+            shrink: true,
+          }}
+          required
+          onChange={handleChange}
+          value={loginDetails.email}
+        />
+        <TextField
+          label="Password"
+          name="password"
+          type="password"
+          InputLabelProps={{
+            shrink: true,
+          }}
+          required
+          onChange={handleChange}
+          value={loginDetails.password}
+        />
+        <Box>
+          <Tooltip
+            title={`Log in to user with email: ${loginDetails.email}`}
+            placement="right"
+          >
+            <Button variant="outlined" color="secondary" type="submit">
+              Log In
+            </Button>
+          </Tooltip>
+        </Box>
+      </Stack>
       <Link to="/register">I don&apos;t have a user</Link>
     </div>
   );
