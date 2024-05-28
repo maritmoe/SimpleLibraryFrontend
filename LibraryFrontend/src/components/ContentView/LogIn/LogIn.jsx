@@ -69,7 +69,7 @@ function LogIn() {
           onChange={handleChange}
           value={loginDetails.password}
         />
-        <Box>
+        <Box sx={{ mb: 2 }}>
           <Tooltip
             title={`Log in to user with email: ${loginDetails.email}`}
             placement="right"

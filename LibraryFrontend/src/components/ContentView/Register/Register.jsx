@@ -1,3 +1,4 @@
+import { Box, Button, Stack, TextField, Tooltip } from "@mui/material";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -16,6 +17,7 @@ function Register() {
   };
 
   function handleResponse() {
+    alert("Successfully registered a new user");
     // Navigate to login page
     navigate(`/login`);
   }
@@ -40,39 +42,57 @@ function Register() {
     <div>
       <h2>Register New User</h2>
       {invalid && <span>Something went wrong</span>}
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Email</label>
-          <input
-            type="email"
-            name="email"
-            required
-            onChange={handleChange}
-            value={formData.email}
-          />
-        </div>
-        <div>
-          <label>Password</label>
-          <input
-            type="password"
-            name="password"
-            required
-            onChange={handleChange}
-            value={formData.password}
-          />
-        </div>
-        <div>
-          <label>Name</label>
-          <input
-            type="text"
-            name="name"
-            required
-            onChange={handleChange}
-            value={formData.name}
-          />
-        </div>
-        <button type="submit">Register</button>
-      </form>
+      <Stack
+        component="form"
+        sx={{
+          "& .MuiTextField-root": { mb: 1 },
+        }}
+        autoComplete="off"
+        onSubmit={handleSubmit}
+      >
+        <TextField
+          label="Email"
+          name="email"
+          type="email"
+          InputLabelProps={{
+            shrink: true,
+          }}
+          required
+          onChange={handleChange}
+          value={formData.email}
+        />
+        <TextField
+          label="Password"
+          name="password"
+          type="password"
+          InputLabelProps={{
+            shrink: true,
+          }}
+          required
+          onChange={handleChange}
+          value={formData.password}
+        />
+        <TextField
+          label="Name"
+          name="name"
+          InputLabelProps={{
+            shrink: true,
+          }}
+          required
+          onChange={handleChange}
+          value={formData.name}
+        />
+        <Box sx={{ mb: 2 }}>
+          <Tooltip
+            title={`Register a new user with email: ${formData.email}`}
+            placement="right"
+          >
+            <Button variant="outlined" color="secondary" type="submit">
+              Register
+            </Button>
+          </Tooltip>
+        </Box>
+      </Stack>
       <Link to="/login">I already have a user</Link>
     </div>
   );
