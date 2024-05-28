@@ -9,7 +9,7 @@ function ProfileView() {
   const [error, setError] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
   const { userId } = useParams();
-  const { user } = useContext(AuthContext);
+  const { user, setUser } = useContext(AuthContext);
 
   useEffect(() => {
     // Checks that the user being fetched is the logged in user or an admin
@@ -62,9 +62,13 @@ function ProfileView() {
           body: JSON.stringify(userForm),
         })
           .then((response) => response.json())
-          .then((data) =>
-            alert("New name of user with id " + data.id + " is: " + data.name)
-          );
+          .then((data) => {
+            if (userId === user.id) {
+              // Update user stored in AuthContext
+              setUser({ ...user, name: userForm.name });
+            }
+            alert("New name of user with id " + data.id + " is: " + data.name);
+          });
       }
     }
   };

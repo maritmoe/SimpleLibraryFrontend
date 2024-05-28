@@ -89,7 +89,9 @@ function App() {
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <AuthContext.Provider value={{ authToken, login, logout, user }}>
+        <AuthContext.Provider
+          value={{ authToken, login, logout, user, setUser }}
+        >
           <NavigationBar />
           <div className="main-container">
             <Routes>
