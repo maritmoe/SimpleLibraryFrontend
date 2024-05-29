@@ -27,6 +27,10 @@ function AdminMenu() {
         allowScrollButtonsMobile
         textColor="secondary"
         indicatorColor="secondary"
+        sx={{
+          position: "sticky",
+          top: 0,
+        }}
       >
         <Tab
           icon={<LibraryAdd />}
